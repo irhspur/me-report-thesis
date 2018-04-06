@@ -1,6 +1,8 @@
 \documentclass{article}
 
-\title{Project Report on Synthesizing Natural Sounding Nepali Voice}
+\usepackage{url}
+
+\title{Project Report on Building Natural Sounding Nepali Speech Synthesis System}
 \date{2018-04-15}
 \author{Roop Shree Ratna Bajracharya}
 
@@ -16,14 +18,69 @@
 	\pagenumbering{arabic}
 	
 	\section{Abstract}
-	Text-to-Speech (TTS) synthesis has come far from its primitive synthetic monotone voices to more natural and intelligible sounding voices. Festival is one of such systems that uses a concatenative speech synthesis method to produce natural sounding voice. This project aims to develop Nepali voice using Festival system with tools included in Festvox as a part of the Nepali-TTS project currently being conducted in Information and Language Processing Research Lab (ILPRL) in Kathmandu University. This project includes studying and improving different steps and procedures involved in the speech synthesis process and will aim to produce more natural sounding Nepali voice.
-	\paragraph{}
-	Keywords: Text-To-Speech, Festival Speech Synthesis, Concatenative Speech Synthesis
+		Text-to-Speech (TTS) synthesis has come far from its primitive synthetic monotone voices to more natural and intelligible sounding voices. Festival is one of such systems that uses a concatenative speech synthesis method to produce natural sounding voice. This project aims to develop Nepali voice using Festival system with tools included in Festvox as a part of the Nepali-TTS project currently being conducted in Information and Language Processing Research Lab (ILPRL) in Kathmandu University. This project includes studying and improving different steps and procedures involved in the speech synthesis process and will aim to produce more natural sounding Nepali voice.
+		\paragraph{}
+		Keywords: Text-To-Speech, Festival Speech Synthesis, Concatenative Speech Synthesis
 	\newpage
 	
 	\section{Introduction}
-	\subsection{Text to Speech Synthesis}
-	Text-To-Speech (TTS) system converts the given text to a spoken waveform through text processing and speech generation processes. These processes are connected to linguistic theory, models of speech production, and acoustic-phonetic characterization of language \cite{ReviewOfTTS:1}. There are three approaches to TTS system: 1) articulatory-model 2) parameter-based  and 3) concatenation of stored speech \cite{ReviewOfTTS:1}. This project deals with the third approach to concatenate stored speech segments (units). This approach includes storing and concatenation of speech from huge number of recorded sentences of a language to produce a speech waveform. 
+		\subsection{Text to Speech Synthesis}
+		\paragraph{}
+		Text-To-Speech (TTS) system converts the given text to a spoken waveform through text processing and speech generation processes. These processes are connected to linguistic theory, models of speech production, and acoustic-phonetic characterization of language \cite{ReviewOfTTS:1}. There are three approaches to TTS system: 1) articulatory-model 2) parameter-based  and 3) concatenation of stored speech \cite{ReviewOfTTS:1}. This project deals with the third approach to concatenate stored speech segments (units). This approach includes storing and concatenation of speech from huge number of recorded sentences of a language to produce a speech waveform. 
+	
+		\subsection{Concatenative Speech Synthesis}
+			\paragraph{}
+				A concatenative speech synthesis system produces sound by combining recorded sound clips. The system can speak by using available recordings of sound. The recorded speech can be further broken down into smaller components, so that it can be used to make any spoken word. There are three main types of concatenative synthesis \cite{HINDITTS:5}:
+				\begin{enumerate}
+					\item Unit selection synthesis that uses large databases of recorded speech and creates database from recorded utterance.
+					\item Diphone synthesis that uses a minimal speech database containing all the diphones (sound-to-sound transitions) occurring in a language.
+					\item Domain-specific synthesis which concatenates prerecorded words and phrases to create complete utterances. This approach is useful for limited domain applications like talking clocks, station announcement systems which can create large variations of speech by using only small number of unique recorded speech. 
+				\end{enumerate}
+		
+		\paragraph{}
+			This project makes use of the unit selection method.
+	
+		\subsection{Festival Speech Synthesis System}
+			\paragraph{}
+				Festival is a free software multi-lingual speech synthesis multi-platform workbench developed by Alan W. Black at Centre for Speech Technology Research (CSTR) at the University of Edinburgh \cite{FESTIVAL:2}. It designed as a component of large speech technology systems. It provides an environment for investigating  and developing speech synthesis techniques. It is a concatenative speech synthesis system. The system is written in C++ with a Scheme-like command interpreter for general customization and extension (CSTR) \cite{FESTIVAL:2}. This allows the user to add or edit its components in Scheme without touching the underlying C++ code.
+	
+		\subsection{Festvox for Building Voices}
+		\paragraph{}
+			The Festvox provides a systematic and a well documented way to build new synthetic voices. It consists of documentation and scripts that explains the steps and theory behind building new voices for speech synthesis using Festival speech synthesis system. It also provides full examples for building synthetic voices using limited domains. It supports data-driven synthesis algorithm known as unit selection algorithm  \cite{UNITSEL:4}. 
+		\paragraph{}
+	Festvox can be used with Edinburg Speech Tools (EST). The Edinburgh Speech Tools Library contains a range of tools for general speech processing, written at the Centre for Speech Technology Research at the University of Edinburgh \cite{FESTVOX:3}.
+
+	\section{Objective}
+		\paragraph{}
+			This project aims to build natural sounding Nepali voices using Festival system which will be later used in the free Windows screen reader application called Non-Visual Desktop Access (NVDA). The voice build from this system can be used as a plugin in NVDA which will allow the system to produce natural sounding screen reader voices. So this project will look into the different factors associated with the Nepali voice synthesis including the language related as well as the technical aspects of the Festival system using Festvox tools while improving the synthesized voice.
+		\paragraph{}
+			A secondary aim of this project is to learn about the processes involved Festival in taking text as input and producing audio output and make improvements to the process to produce better quality sound.
+
+	\section{Voice Synthesis Process}
+		\paragraph{}
+			The voice synthesis in festival includes a number of step ranging from designing of input prompts to finally testing the input text for its synthesized voice. Figure 1 shows the major components of this process.
+
+	\paragraph{}
+		The steps for voice synthesis are as follows \cite{HINDITTS:5}:
+		\begin{enumerate}
+			\item{Data Collection}: Data to be used for recorded are obtained by crawling new websites for most frequent sentences.
+			\item{Cleaning up of Data}: The collected data is analysed and cleaned to cover most relevant sentences. Then the final set of selected sentences are compiled.
+			\item{Recording}: The selected sentences are recorded in a noise-free studio for maximum clarity.
+			\item{Text Preprocessing}: The selected text which is in Devnagarik unicode is transliterated to corresponding English version. Then these transliterated text are syllabified so that it can be supplied to create lexicon files need for the Festival system.
+			\item{Labeling}: The wavefiles are then auto labeled using the EHMM (Hidden Markov Model) labeler to get accurate syllable boundaries. The labeling step includes building utterance structures, building pitch marks and cepstrum parameter files.
+			\item{Training Phase}: Using the wavefiles and their transcriptions the nepali language unit selection voice is built.
+			\item{Testing Phase}: Using the voice built, Festival system is used to test the input text.
+			\item{Miscellaneous Processes}: Apart from the above main steps the project also includes writing scripts to automate repetitive tasks and also to automate the voice building process. 
+
+		\end{enumerate} 
+
+	\section{Conclusion}
+		\paragraph{}
+			This project aims to develop Nepali voice in Festival Speech Synthesis System using Festvox tools under the unit selection synthesis approach of concatenative speech synthesis technique. Through this project various theory related to TTS and Festival system will be studied and analysed with the object of improving the output and process of synthesizing the Nepali voice using the given resources.
+
+
+
+
 
 
 	\newpage
