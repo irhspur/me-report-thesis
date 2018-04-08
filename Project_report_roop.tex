@@ -1,13 +1,20 @@
 \documentclass{report}
 
 \usepackage{url}
+%\usepackage[showframe]{geometry}
+%\usepackage{layout}
 
+\setlength{\voffset}{-0.75in}
+\setlength{\headsep}{15pt}
+%\setlength{\marginparwidth}{40pt}
+\setlength{\textheight}{630pt}
+%\setlength{\textwidth}{430pt}
 
 \title{Project Report on Building Natural Sounding Nepali Speech Synthesis System}
 \date{2018-04-15}
 \author{Roop Shree Ratna Bajracharya}
 
-\begin{document}
+\begin{document}%\layout
 	
 	\pagenumbering{gobble}
 	\maketitle
@@ -54,7 +61,7 @@
 		\paragraph{}
 	Festvox can be used with Edinburg Speech Tools (EST). The Edinburgh Speech Tools Library contains a range of tools for general speech processing, written at the Centre for Speech Technology Research at the University of Edinburgh \cite{FESTVOX:3}.
 
-	\chapter{Objective}
+		\section{Objective}
 		\paragraph{}
 			This project aims to build natural sounding Nepali voices using Festival system which will be later used in the free Windows screen reader application called Non-Visual Desktop Access (NVDA). The voice build from this system can be used as a plugin in NVDA which will allow the system to produce natural sounding screen reader voices. So this project will look into the different factors associated with the Nepali voice synthesis including the language related as well as the technical aspects of the Festival system using Festvox tools while improving the synthesized voice.
 		\paragraph{}
@@ -62,7 +69,10 @@
 
 	\chapter{Related Work}
 		\section{Current Speech Synthesis System for NVDA}
+			\paragraph{}
 			NVDA supports a number of speech synthesis including eSpeak, Acapela TTS, Eloquence, Nuance, Festival, Flite. etc. \cite{NVDA:7}. Microsoft also has its own speech synthesis system called Microsoft Speech API (SAPI) which is supported by NVDA. But out of these only Festival is open-source and free voice. Festival Speech Synthesis System and FestVox was created in \textit{Center for Speech Technology Research (CSTR)} located at the University of Endinburgh which uses the concatenative approach of speech synthesis. Festival is widely used among researchers in the field of speech synthesis research. \cite{FESTVOICE:8}
+		\section{Literature}
+			\paragraph{}
 	\chapter{Voice Synthesis Process}
 		\paragraph{}
 			The voice synthesis in festival includes a number of step ranging from designing of input prompts to finally testing the input text for its synthesized voice. Figure 1 shows the major components of this process.
